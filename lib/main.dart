@@ -402,7 +402,7 @@ class _MyHomePageState extends State<MyHomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                "Price of 1 gram",
+                "Price",
                 style: TextStyle(
                   color: Color(0xffB0B1B9),
                   fontWeight: FontWeight.w400,
@@ -413,8 +413,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 2,
               ),
               Text(
-                data.bondsPricePerGram != null
-                    ? "₹ ${data.bondsPricePerGram.toString()}"
+                data.orderAmount != null
+                    ? "₹ ${data.orderAmount.toString()}"
                     : "₹0",
                 style: const TextStyle(
                   color: Color(0xff22263D),
@@ -488,7 +488,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 2,
               ),
               Text(
-                data.orderAmount != null ? data.orderAmount.toString() : '₹0',
+                data.orderAmount != null &&data.orderQuantity !=null
+                    ? ((int.parse(double.parse(data.orderAmount!.toString())
+                                    .toInt()
+                                    .toString()) *
+                                int.parse(data.orderQuantity!.toString()))
+                            .toInt())
+                        .toString()
+                    : "₹0",
+                //  ? format.format((int.parse(double.parse(data.bondsPricePerGram.toString()).toInt().toString())*data.orderQuantity)
+                //.toInt())
+
+                // data.orderAmount != null ? data.orderAmount.toString() : '₹0',
                 style: const TextStyle(
                   color: Color(0xff22263D),
                   fontWeight: FontWeight.bold,
